@@ -88,8 +88,18 @@ app.controller("productosCtrl", function ($scope, $http) {
             $("#tbodyProductos").html(trsHTML)
         })
     }
-
     buscarProductos()
+
+     Pusher.logToConsole = true;
+
+    var pusher = new Pusher('31ae6b34bc46f36ce86f', {
+      cluster: 'us2'
+    });
+
+    var channel = pusher.subscribe('canalProductos');
+    channel.bind('eventoProductos', function(data) {
+      alert(JSON.stringify(data));
+    });
     
     $(document).on("submit", "#frmProducto", function (event) {
         event.preventDefault()
@@ -142,5 +152,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
