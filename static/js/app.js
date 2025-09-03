@@ -57,7 +57,7 @@ app.run(["$rootScope", "$location", "$timeout", function($rootScope, $location, 
 
     $rootScope.$on("$routeChangeSuccess", function (event, current, previous) {
         $("html").css("overflow-x", "hidden")
-
+        
         const path = current.$$route.originalPath
 
         if (path.indexOf("splash") == -1) {
@@ -88,19 +88,21 @@ app.controller("productosCtrl", function ($scope, $http) {
             $("#tbodyProductos").html(trsHTML)
         })
     }
-    buscarProductos()
 
-     Pusher.logToConsole = true;
+    buscarProductos()
+    
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
 
     var pusher = new Pusher('31ae6b34bc46f36ce86f', {
       cluster: 'us2'
     });
 
-    var channel = pusher.subscribe('canalProductos');
-    channel.bind('eventoProductos', function(data) {
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
       alert(JSON.stringify(data));
     });
-    
+
     $(document).on("submit", "#frmProducto", function (event) {
         event.preventDefault()
 
@@ -109,8 +111,6 @@ app.controller("productosCtrl", function ($scope, $http) {
             nombre: $("#txtNombre").val(),
             precio: $("#txtPrecio").val(),
             existencias: $("#txtExistencias").val(),
-        }, function (respuesta) {
-            buscarProductos()
         })
     })
 
@@ -152,6 +152,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
+
+
+
+
 
 
 
