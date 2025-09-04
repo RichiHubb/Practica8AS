@@ -94,7 +94,7 @@ app.controller("productosCtrl", function ($scope, $http) {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('31ae6b34bc46f36ce86f', {
+    var pusher = new Pusher('bc1c723155afce8dd187', {
       cluster: 'us2'
     });
 
@@ -102,7 +102,7 @@ app.controller("productosCtrl", function ($scope, $http) {
     channel.bind('my-event', function(data) {
       alert(JSON.stringify(data));
     });
-
+    
     $(document).on("submit", "#frmProducto", function (event) {
         event.preventDefault()
 
@@ -152,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
 
