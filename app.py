@@ -27,14 +27,13 @@ con = mysql.connector.connect(
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/pusherProductos")
 def pusherProductos():
     import pusher
     
     pusher_client = pusher.Pusher(
-      app_id='2046008',
-      key='31ae6b34bc46f36ce86f',
-      secret='43cb439eacbeec88e8f2',
+      app_id='2046048',
+      key='bc1c723155afce8dd187',
+      secret='57fd29b7d864a84bf88c',
       cluster='us2',
       ssl=True
     )
@@ -206,6 +205,8 @@ def guardarProducto():
     con.commit()
     con.close()
 
+    pusherProductos()
+    
     return make_response(jsonify({}))
 
 @app.route("/producto/<int:id>")
