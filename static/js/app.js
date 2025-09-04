@@ -98,16 +98,17 @@ app.controller("productosCtrl", function ($scope, $http) {
     buscarProductos()
     
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    Pusher.logToConsole = true
 
-    var pusher = new Pusher('6c42ee5569f1c9906733', {
-      cluster: 'us2'
-    });
+    var pusher = new Pusher("e57a8ad0a9dc2e83d9a2", {
+      cluster: "us2"
+    })
 
-    var channel = pusher.subscribe('canalProductos');
-    channel.bind('eventoProductos', function(data) {
-      alert(JSON.stringify(data));
-    });
+    var channel = pusher.subscribe("canalProductos")
+    channel.bind("eventoProductos", function(data) {
+        // alert(JSON.stringify(data))
+        buscarProductos()
+    })
 
     $(document).on("submit", "#frmProducto", function (event) {
         event.preventDefault()
@@ -145,15 +146,15 @@ app.controller("decoracionesCtrl", function ($scope, $http) {
     buscarDecoraciones()
     
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    Pusher.logToConsole = true
 
-    var pusher = new Pusher('bc1c723155afce8dd187', {
-      cluster: 'us2'
-    });
+    var pusher = new Pusher("e57a8ad0a9dc2e83d9a2", {
+      cluster: "us2"
+    })
 
     var channel = pusher.subscribe("canalDecoraciones")
     channel.bind("eventoDecoraciones", function(data) {
-        alert(JSON.stringify(data))
+        // alert(JSON.stringify(data))
         buscarDecoraciones()
     })
 
@@ -197,10 +198,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
-
-
-
-
 
 
 
