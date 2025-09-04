@@ -151,11 +151,12 @@ app.controller("decoracionesCtrl", function ($scope, $http) {
     var pusher = new Pusher('6c42ee5569f1c9906733', {
       cluster: 'us2'
     });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
+    
+    var channel = pusher.subscribe("canalDecoraciones")
+    channel.bind("eventoDecoraciones", function(data) {
+        // alert(JSON.stringify(data))
+        buscarDecoraciones()
+    })
 
     $(document).on("submit", "#frmDecoracion", function (event) {
         event.preventDefault()
@@ -197,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
 
