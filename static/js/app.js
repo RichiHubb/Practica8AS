@@ -154,7 +154,7 @@ app.controller("decoracionesCtrl", function ($scope, $http) {
     
     var channel = pusher.subscribe("canalDecoraciones")
     channel.bind("eventoDecoraciones", function(data) {
-        // alert(JSON.stringify(data))
+        alert(JSON.stringify(data))
         buscarDecoraciones()
     })
 
@@ -198,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
 
